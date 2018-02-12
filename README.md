@@ -1,8 +1,8 @@
 # AFROTC PT Tracker
 
 ## Prerequisites 
-NodeJS and npm     
-run 'npm install -g @angular/cli'     
+Install NodeJS, npm, and the Angular CLI using the instructions found at 'https://www.npmjs.com/package/@angular/cli/tutorial'.        
+    
 run 'npm install -g typings'      
 run 'npm install -g typescript'      
 
