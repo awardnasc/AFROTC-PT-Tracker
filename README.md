@@ -2,9 +2,9 @@
 
 ## Prerequisites 
 NodeJS and npm 
-run 'npm install -g @angular/cli'
-run 'npm install -g typings'
-run 'npm install -g typescript'
+run 'npm install -g @angular/cli' 
+run 'npm install -g typings' 
+run 'npm install -g typescript' 
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
