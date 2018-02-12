@@ -1,7 +1,7 @@
 # AFROTC PT Tracker
 
 ## Prerequisites 
-NodeJS and npm 
+NodeJS and npm     
 run 'npm install -g @angular/cli'     
 run 'npm install -g typings'      
 run 'npm install -g typescript'      
