@@ -8,9 +8,29 @@ import {Router} from '@angular/router';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent{
-  constructor(public afService: AF, private router: Router) {}
+export class HomePageComponent {
 
+  public position: any;
+  public latitude: number;
+  public longitude: number;
+
+  constructor() {}
+
+
+  public getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((pos) => {
+        this.position = pos;
+        this.latitude = this.position.latitude;
+        this.longitude = this.position.longitude;
+
+        console.log(pos);
+      });
+    } else {
+      console.log('not supported');
+      this.position = 'Geolocation is not supported by this browser.';
+    }
+  }
 }
 // export class HomePageComponent implements OnInit, AfterViewChecked {
 //   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
