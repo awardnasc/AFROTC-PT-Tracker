@@ -1,6 +1,6 @@
 import {Component, OnInit, AfterViewChecked, ElementRef, ViewChild} from '@angular/core';
-import {AF} from "../../providers/af";
-import {FirebaseListObservable} from "angularfire2";
+import {AF} from '../../providers/af';
+import {FirebaseListObservable} from 'angularfire2';
 import {Router} from '@angular/router';
 
 @Component({
@@ -13,20 +13,24 @@ export class HomePageComponent {
   public position: any;
   public latitude: number;
   public longitude: number;
-
+  lat = 34.676589;
+  lng = -82.836585;
+  change = false;
   constructor() {}
 
-  lat: number = 34.680712;
-  lng: number = -82.841609;
+
 
   public getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
         this.position = pos;
-        this.latitude = this.position.latitude;
-        this.longitude = this.position.longitude;
+        this.latitude = this.position.coords.latitude;
+        this.longitude = this.position.coords.longitude;
+        this.change = true;
 
         console.log(pos);
+        console.log(this.change);
+        console.log(this.lat, '  ', this.longitude);
       });
     } else {
       console.log('not supported');
