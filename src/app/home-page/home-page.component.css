@@ -59,6 +59,7 @@ p {
   vertical-align: top;
 }
 
+
 .bubble::before {
   background-color: #F2F2F2;
   content: "\00a0";
@@ -105,4 +106,8 @@ p {
   background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
   border-radius: 4px;
+}
+
+.sebm-google-map-container {
+  height: 300px;
 }

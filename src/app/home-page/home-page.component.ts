@@ -16,6 +16,8 @@ export class HomePageComponent {
 
   constructor() {}
 
+  lat: number = 34.680712;
+  lng: number = -82.841609;
 
   public getLocation = () => {
     if (navigator.geolocation) {

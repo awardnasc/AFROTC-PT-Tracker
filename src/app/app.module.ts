@@ -9,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import {FormsModule} from "@angular/forms";
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyA3QeqVOHH8OGTAipaGWfjEYt2QRXce9JE",
@@ -17,6 +18,10 @@ export const firebaseConfig = {
   storageBucket: "rotcfit-33ec0.appspot.com",
   messagingSenderId: "21604736537"
 };
+
+const googleMapsCore = AgmCoreModule.forRoot({
+  apiKey : 'AIzaSyDEC_eqUoj5IOJybhbK59R1JNjwgucSGJc',
+});
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -30,7 +35,8 @@ const routes: Routes = [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    googleMapsCore
   ],
   declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ProfilePageComponent ],
   bootstrap: [ AppComponent ],
