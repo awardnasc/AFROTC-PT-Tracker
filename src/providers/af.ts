@@ -7,6 +7,7 @@ export class AF {
   public users: FirebaseListObservable<any>;
   public displayName: string;
   public email: string;
+  public name: string;
   public user: FirebaseObjectObservable<any>;
 
   constructor(public af: AngularFire) {
@@ -94,4 +95,13 @@ export class AF {
       });
   }
 
+  findUserByEmail(email: string ){
+    this.email = email;
+    return this.af.database.list('registeredUsers', {
+      query: {
+        orderByChild: 'email',
+        equalTo: this.email
+      }
+    });
+  }
 }

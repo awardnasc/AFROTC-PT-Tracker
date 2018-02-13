@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {AF} from '../../providers/af';
 
 @Component({
   selector: 'app-profile-page',
@@ -8,9 +9,18 @@ import {Router} from "@angular/router";
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
+  currentUser: any;
+  private email: string;
+
+  constructor(private afService: AF, private router: Router) { }
 
   ngOnInit() {
+    this.email = this.afService.email;
+    this.afService.findUserByEmail(this.email).subscribe(
+      val => {
+        console.log(val);
+        this.currentUser = val[0];
+      }
+    );
   }
-
 }
