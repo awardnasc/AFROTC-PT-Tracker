@@ -1,25 +1,5 @@
 <div class="container">
-  <!--<div class="row">-->
-    <!--<div class="col-md-8 col-md-offset-2">-->
-      <!--<div #scrollMe class="bs-example" id="messages">-->
-        <!--<div *ngFor="let message of messages | async">-->
-          <!--<div class="bubble" [class.you]="isYou(message.email)" [class.me]="isMe(message.email)">-->
-            <!--<p>{{ message.message }}</p>-->
-            <!--<div class="author">-->
-              <!--{{ message.displayName }} | {{ message.timestamp | date:"MM/dd/yy hh:mm a" }}-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-      <!--</div>-->
-
-      <!--<figure class="highlight">-->
-        <!--<input type="textarea" class="message-text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()">-->
-        <!--<a class="send-message" (click)="sendMessage()">SEND</a>-->
-      <!--</figure>-->
-    <!--</div>-->
-  <!--</div>-->
-  <h1 id="hello">Hello!</h1>
+  <h1 id="hello">Welcome!</h1>
 
   <button (click)="getLocation()">Try It</button>
   <p>Latitude: {{latitude}}</p>
@@ -28,12 +8,28 @@
   <sebm-google-map
      [latitude]="lat"
      [longitude]="lng"
-     [zoom] = "14">
+     [zoom] = "15">
 
     <sebm-google-map-marker
          [latitude]="latitude"
          [longitude]="longitude">
+      <sebm-google-map-info-window>
+        <strong>My location</strong>
+      </sebm-google-map-info-window>
     </sebm-google-map-marker>
+    ,
+    <sebm-google-map-circle [latitude]="34.680656" [longitude]= "-82.841908"
+                            [radius]="70"
+                            [fillColor]="'red'"
+                            [clickable]="true"
+                            [circleDraggable]="false"
+                            [editable]="false">
+      <sebm-google-map-info-window>
+        <strong>Eligible Workout Location</strong>
+      </sebm-google-map-info-window>
+    </sebm-google-map-circle>>
+
+
 
   </sebm-google-map>
 
