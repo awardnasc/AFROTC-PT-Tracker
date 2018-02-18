@@ -78,6 +78,12 @@ export class AF {
     });
   }
 
+  logLocationFromButton(uid, lat, long, time) {
+    return this.af.database.object('registeredUsers/' + uid + '/checkIns/' + time).update({
+      coords:  lat + ', ' + long,
+    });
+  }
+
   /**
    * Logs the user in using their Email/Password combo
    * @param email
