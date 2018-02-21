@@ -11,6 +11,7 @@ export class ProfilePageComponent implements OnInit {
 
   currentUser: any;
   private email: string;
+  geoLogs: any;
 
   constructor(private afService: AF, private router: Router) { }
 
@@ -20,6 +21,7 @@ export class ProfilePageComponent implements OnInit {
       val => {
         console.log(val);
         this.currentUser = val[0];
+        this.geoLogs = JSON.stringify(this.currentUser.checkIns);
       }
     );
   }
