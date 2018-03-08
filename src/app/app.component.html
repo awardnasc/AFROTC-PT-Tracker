@@ -2,6 +2,12 @@
   <div class="container-fluid">
     <div class="navebar-header">
       <a class="navbar-brand" href="#">ROTC Fit</a>
+      <ul *ngIf="isLoggedIn" class="nav navbar-nav navbar-right border-left hidden-md, hidden-sm, hidden-xs">
+        <li><a (click)="logout()">Logout</a></li>
+      </ul>
+      <ul *ngIf="isLoggedIn" class="nav navbar-nav navbar-right hidden-md, hidden-sm, hidden-xs">
+        <li><a [routerLink]="['/profile']">Profile</a></li>
+      </ul>
 
       <button *ngIf="isLoggedIn" type="button" class="navbar-toggle" (click)="onToggleMenu()">
         <span class="icon-bar"></span>
@@ -25,16 +31,21 @@
   <router-outlet></router-outlet>
 </div>
 
+<!--<nav *ngIf="actualWidth > 400" class="navbar navbar-default nav">-->
 
-<!--<div *ngIf="isLoggedIn">-->
-  <!-- -      <ul class="nav navbar-nav navbar-right border-left">-->
-  <!--+    <div class="collapse" [ngClass]="{ 'toggleMenuStyle' : toggleMenu === true }">-->
-  <!--+      <ul class="nav navbar-nav">-->
-  <!--+        <div class="filler-div"></div>-->
-  <!--+        <li><a [routerLink]="['/profile']">Profile</a></li>-->
-  <!--<li><a (click)="logout()">Logout</a></li>-->
-<!--</ul>-->
-  <!-- -      <ul class="nav navbar-nav navbar-right">-->
-  <!-- -        <li><a [routerLink]="['/profile']">{{afService.displayName}}</a></li>-->
-  <!-- -      </ul>-->
-<!--</div>-->
+  <!--<div class="container-fluid">-->
+
+    <!--<div class="navbar-header">-->
+      <!--<a class="navbar-brand" href="#">ROTC Fit</a>-->
+    <!--</div>-->
+
+    <!--<div *ngIf="isLoggedIn">-->
+      <!--<ul class="nav navbar-nav navbar-right border-left">-->
+        <!--<li><a (click)="logout()">Logout</a></li>-->
+      <!--</ul>-->
+      <!--<ul class="nav navbar-nav navbar-right">-->
+        <!--<li><a [routerLink]="['/profile']">{{afService.displayName}}</a></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</nav>-->
