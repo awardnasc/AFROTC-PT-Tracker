@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   public isLoggedIn: boolean;
-
+  toggleMenu = false;
   constructor(public afService: AF, private router: Router) {
     // This asynchronously checks if our user is logged it and will automatically
     // redirect them to the Login page when the status changes.
@@ -37,6 +37,14 @@ export class AppComponent {
         }
       }
     );
+  }
+
+  onToggleMenu(){
+    if (this.toggleMenu == true) {
+      this.toggleMenu = false;
+    } else {
+      this.toggleMenu = true;
+    }
   }
 
   logout() {

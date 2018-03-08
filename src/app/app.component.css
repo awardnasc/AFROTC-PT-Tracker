@@ -1,3 +1,6 @@
-.border-left {
-  border-left: solid 1px;
+.toggleMenuStyle {
+  display: block;
+}
+.filler-div{
+  height: 50px;
 }
