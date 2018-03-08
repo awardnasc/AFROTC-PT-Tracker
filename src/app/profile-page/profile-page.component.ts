@@ -12,6 +12,7 @@ export class ProfilePageComponent implements OnInit {
   currentUser: any;
   private email: string;
   geoLogs: any;
+  parsedGeo: any;
 
   constructor(private afService: AF, private router: Router) { }
 
@@ -22,6 +23,7 @@ export class ProfilePageComponent implements OnInit {
         console.log(val);
         this.currentUser = val[0];
         this.geoLogs = JSON.stringify(this.currentUser.checkIns);
+        this.parsedGeo = JSON.parse(this.geoLogs);
       }
     );
   }

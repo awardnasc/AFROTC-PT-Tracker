@@ -11,6 +11,7 @@ import { RegistrationPageComponent } from './registration-page/registration-page
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyA3QeqVOHH8OGTAipaGWfjEYt2QRXce9JE',
   authDomain: 'rotcfit-33ec0.firebaseapp.com',
@@ -36,7 +37,7 @@ const routes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(routes),
     FormsModule,
-    googleMapsCore
+    googleMapsCore,
   ],
   declarations: [ AppComponent, LoginPageComponent, HomePageComponent, RegistrationPageComponent, ProfilePageComponent ],
   bootstrap: [ AppComponent ],
