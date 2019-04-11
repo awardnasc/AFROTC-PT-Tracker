@@ -298,7 +298,7 @@ export class HomePageComponent implements OnInit{
     postWorkout() {
         this.userSub.unsubscribe();
         if (this.workoutPost != null) {
-            this.afService.postWorkout('fbXorGyMAtMfnThkP6nB2zAxqQU2', this.workoutPost);
+            this.afService.postWorkout('P55By9sK4yb30UGs1x0wpwry1403', this.workoutPost);
             alert('Workout: "' + this.workoutPost + '" has been posted!');
         } else {
             console.log('workout null');
@@ -310,7 +310,7 @@ export class HomePageComponent implements OnInit{
     deleteWorkout() {
         this.buildTable = false;
         this.workoutPost = '';
-      this.afService.postWorkout('fbXorGyMAtMfnThkP6nB2zAxqQU2', this.workoutPost);
+      this.afService.postWorkout('P55By9sK4yb30UGs1x0wpwry1403', this.workoutPost);
       alert('Current workout deleted!');
     }
 
