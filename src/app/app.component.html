@@ -1,12 +1,13 @@
 <nav class = "navbar navbar-default">
   <div class="container-fluid">
     <div class="navebar-header">
-      <a class="navbar-brand" href="#">ROTC Fit</a>
+      <a *ngIf="!isAdmin" class="navbar-brand" href="#">ROTC Fit</a>
+      <a *ngIf="isAdmin" class="navbar-brand">ROTC Fit</a>
       <ul *ngIf="isLoggedIn" class="nav navbar-nav navbar-right border-left hidden-md, hidden-sm, hidden-xs">
         <li><a class="clickable" (click)="logout()">Logout</a></li>
       </ul>
       <ul *ngIf="isLoggedIn" class="nav navbar-nav navbar-right hidden-md, hidden-sm, hidden-xs">
-        <li><a class="clickable" [routerLink]="['/profile']">Profile</a></li>
+        <li *ngIf="!isAdmin"><a class="clickable" [routerLink]="['/profile']">Profile</a></li>
       </ul>
 
       <button *ngIf="isLoggedIn" type="button" class="navbar-toggle" (click)="onToggleMenu()">
@@ -20,7 +21,7 @@
     <div *ngIf="isLoggedIn" class="collapse" [ngClass]="{ 'toggleMenuStyle' : toggleMenu === true }">
       <ul class="nav navbar-nav">
         <div class="filler-div"></div>
-        <li><a class="clickable" [routerLink]="['/profile']">Profile</a></li>
+        <li *ngIf="!isAdmin"><a class="clickable" [routerLink]="['/profile']">Profile</a></li>
         <li><a class="clickable"(click)="logout()">Logout</a></li>
       </ul>
     </div>
@@ -31,21 +32,4 @@
   <router-outlet></router-outlet>
 </div>
 
-<!--<nav *ngIf="actualWidth > 400" class="navbar navbar-default nav">-->
 
-  <!--<div class="container-fluid">-->
-
-    <!--<div class="navbar-header">-->
-      <!--<a class="navbar-brand" href="#">ROTC Fit</a>-->
-    <!--</div>-->
-
-    <!--<div *ngIf="isLoggedIn">-->
-      <!--<ul class="nav navbar-nav navbar-right border-left">-->
-        <!--<li><a (click)="logout()">Logout</a></li>-->
-      <!--</ul>-->
-      <!--<ul class="nav navbar-nav navbar-right">-->
-        <!--<li><a [routerLink]="['/profile']">{{afService.displayName}}</a></li>-->
-      <!--</ul>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</nav>-->

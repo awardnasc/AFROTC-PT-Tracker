@@ -13,7 +13,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 export const firebaseConfig = {
-  apiKey: 'AIzaSyA3QeqVOHH8OGTAipaGWfjEYt2QRXce9JE',
+  apiKey: '',
   authDomain: 'rotcfit-33ec0.firebaseapp.com',
   databaseURL: 'https://rotcfit-33ec0.firebaseio.com',
   storageBucket: 'rotcfit-33ec0.appspot.com',
@@ -21,7 +21,7 @@ export const firebaseConfig = {
 };
 
 const googleMapsCore = AgmCoreModule.forRoot({
-  apiKey : 'AIzaSyDEC_eqUoj5IOJybhbK59R1JNjwgucSGJc',
+  apiKey : '',
 });
 
 const routes: Routes = [

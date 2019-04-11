@@ -9,9 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   public isLoggedIn: boolean;
+  public isAdmin: boolean;
   toggleMenu = false;
-  constructor(public afService: AF, private router: Router) {
 
+
+  constructor(public afService: AF, private router: Router) {
+    this.isAdmin = false;
+
+    // find out if the current user is logged in successfully and if they are admins
     this.afService.af.auth.subscribe(
       (auth) => {
         if (auth == null) {
@@ -22,6 +27,9 @@ export class AppComponent {
         } else {
           console.log('Successfully Logged in.');
           this.afService.email = auth.auth.email;
+          if (this.afService.email === 'admin@admin.com'){
+            this.isAdmin = true;
+          }
           this.isLoggedIn = true;
           this.router.navigate(['']);
         }
@@ -29,6 +37,7 @@ export class AppComponent {
     );
   }
 
+  // toggles html responsive drop down menu for small screens
   onToggleMenu(){
     if (this.toggleMenu === true) {
       this.toggleMenu = false;
@@ -36,6 +45,9 @@ export class AppComponent {
       this.toggleMenu = true;
     }
   }
+
+
+  // logs the user out
 
   logout() {
     this.afService.logout();

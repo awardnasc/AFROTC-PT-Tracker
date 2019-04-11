@@ -8,15 +8,22 @@ export class AF {
   public displayName: string;
   public email: string;
   public user: FirebaseObjectObservable<any>;
+  public fikeLog: FirebaseListObservable<any>;
+  public validWorkout: FirebaseObjectObservable<any>;
+  public workout: FirebaseListObservable<any>;
 
   constructor(public af: AngularFire) {
     this.af.auth.subscribe(
       (auth) => {
         if (auth != null) {
           this.user = this.af.database.object('registeredUsers/' + auth.uid);
+            this.fikeLog = this.af.database.list('registeredUsers/' + auth.uid + '/fike');
+            this.validWorkout = this.af.database.object('registeredUsers/' + auth.uid + '/validWorkout');
         }
       });
     this.users = this.af.database.list('registeredUsers');
+    this.fikeLog = this.af.database.list('/fike');
+    this.validWorkout = this.af.database.object('/validWorkout');
   }
 
   // Logs out user
@@ -43,10 +50,12 @@ export class AF {
   }
 
   // Logs location and timestamp to firebase
-  logLocationFromButton(uid, lat, long, time) {
-    return this.af.database.object('registeredUsers/' + uid + '/checkIns/' + time).update({
-      coords:  lat + ', ' + long,
-    });
+  logFikeFromButton(uid, time) {
+
+      this.fikeLog.push(time);
+    //   return this.af.database.object('registeredUsers/' + uid ).update({
+    //      fike: time,
+    // });
   }
 
   // Login to site using email and password
@@ -62,7 +71,7 @@ export class AF {
   }
 
   // Search through users to give object of the one with email provided
-  findUserByEmail(email: string ){
+  findUserByEmail(email: string ) {
     this.email = email;
     return this.af.database.list('registeredUsers', {
       query: {
@@ -71,4 +80,20 @@ export class AF {
       }
     });
   }
+  //searches through users and gives a list
+  findAllUserList() {
+      return this.af.database.list('registeredUsers', {
+      });
+  }
+  //posts workout that admins edit
+  postWorkout(uid, workoutPost: string) {
+      return this.af.database.object('registeredUsers/' + uid).update({
+          workout: workoutPost,
+      });
+  }
+  //validates workout submitted
+  postValidWorkout(uid, validWorkout) {
+    this.validWorkout.set(validWorkout);
+  }
+
 }

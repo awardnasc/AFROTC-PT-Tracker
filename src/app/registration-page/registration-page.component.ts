@@ -9,14 +9,20 @@ import {Router} from '@angular/router';
 })
 export class RegistrationPageComponent {
   public error: any;
+  public date: any;
+  constructor(private afService: AF, private router: Router) {
 
-  constructor(private afService: AF, private router: Router) { }
+  }
 
   register(event, name, email, password, year) {
     event.preventDefault();
     this.afService.registerUser(email, password).then((user) => {
       this.afService.saveUserInfoFromForm(user.uid, name, email, year).then(() => {
-        this.router.navigate(['']);
+          this.date = new Date(0);
+          this.afService.logFikeFromButton(user.uid, 1400000000000);
+          this.afService.postValidWorkout(user.uid, 1400000000000);
+          this.afService.logout();
+        // this.router.navigate(['']);
       })
         .catch((error) => {
           this.error = error;

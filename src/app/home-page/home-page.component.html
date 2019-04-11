@@ -1,13 +1,10 @@
-<div class="container">
+<!--User Page-->
+<div class="container" *ngIf="!isAdmin">
   <h1>Welcome!</h1>
 
-  <button (click)="getLocation()">Try It</button>
-  <p>Latitude: {{latitude}}</p>
-  <p>Longitude: {{longitude}}</p>
-
   <sebm-google-map
-     [latitude]="lat"
-     [longitude]="lng"
+     [latitude]="latitude"
+     [longitude]="longitude"
      [zoom] = "15">
 
     <sebm-google-map-marker
@@ -16,23 +13,121 @@
       <sebm-google-map-info-window>
         <strong>My location</strong>
       </sebm-google-map-info-window>
-    </sebm-google-map-marker>
-    ,
-    <sebm-google-map-circle [latitude]="34.680656" [longitude]= "-82.841908"
+    </sebm-google-map-marker>,
+    <sebm-google-map-circle [latitude]="34.68068656" [longitude]= "-82.841908"
                             [radius]="70"
                             [fillColor]="'red'"
                             [clickable]="true"
                             [circleDraggable]="false"
-                            [editable]="false">
-      <sebm-google-map-info-window>
+                            [editable]="false">,
+
+    <sebm-google-map-circle [latitude]="34.681277" [longitude]= "-82.844031"
+                                                     [radius]="100"
+                                                     [fillColor]="'red'"
+                                                     [clickable]="true"
+                                                     [circleDraggable]="false"
+                                                     [editable]="false">
+
+
+           <sebm-google-map-info-window>
         <strong>Eligible Workout Location</strong>
       </sebm-google-map-info-window>
+    </sebm-google-map-circle>
+
     </sebm-google-map-circle>>
-
-
-
   </sebm-google-map>
 
-  <button (click)="logLocation()">Log Your Location</button>
-
+  <div id = "spacingVert"></div>
+  <div class="flex">
+    <button id="smallButt" class="btn btn-md btn-primary btn" (click)="getLocation()">  Check Location  </button>
+    <button [disabled]="!buttonSwitch" class="btn btn-md btn-primary btn" (click)="logLocation()">Start the workout</button>
+    <button [disabled]="buttonSwitch" class="btn-md btn-primary btn" (click)="StopWorkout()">Stop the workout</button>
+  </div>
+  <div class="flex">
+    <h3>Posted Workout:</h3>
+  </div>
+  <div class="flex">
+    <p>{{getWorkout}}</p>
+  </div>
 </div>
+
+
+<!--Admin Page-->
+<div class="container" *ngIf="isAdmin">
+  <h1>Admin Console</h1>
+
+  <table>
+    <caption id = "complete">Completed Cadets</caption>
+    <thead>
+      <tr>
+        <th scope="col">Cadet</th>
+        <th scope="col">Most Recent Log</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of trueUserName; let j = index">
+        <td data-label="Cadet">
+            <button type="button" data-toggle="modal" data-target="#myModal" (click)="setUserProfileInfo(i)">{{i}}</button>
+        </td>
+        <td data-label="Most Recent Log">{{trueUserLog[j]}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption id="incomplete">Incomplete Cadets</caption>
+    <thead>
+    <tr>
+      <th scope="col">Cadet</th>
+      <th scope="col">Most Recent Log</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let i of falseUserName; let j = index">
+      <td data-label="Cadet">
+          <button type="button" data-toggle="modal" data-target="#myModal" (click)="setUserProfileInfo(i)">{{i}}</button>
+      </td>
+      <td data-label="Most Recent Log">{{falseUserLog[j]}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{profileUser?.name}}</h4>
+                </div>
+                <div class="modal-body">
+                  <h3>Email: {{profileUser?.email}}</h3>
+                  <h3>Year: {{profileUser?.year}}</h3>
+                  <h3>Past Workout Logs:</h3>
+                  <ul>
+                    <li *ngFor="let i of parsedGeoPro">
+                      {{i}}
+                    </li>
+                  </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+  <div id="workoutPost">
+    <h1>Post a Workout</h1>
+    <textarea  name="paragraph_text"  rows="10" [(ngModel)]="workoutPost"></textarea>
+      <div class="flex">
+        <button  class="btn btn-md btn-primary btn" (click)="postWorkout()">  Post  </button>
+        <button  class="btn btn-md btn-primary btn" (click)="deleteWorkout()">  Delete  </button>
+      </div>
+  </div>
+</div>
+
+
+
+
+<div class="bottomPad"></div>

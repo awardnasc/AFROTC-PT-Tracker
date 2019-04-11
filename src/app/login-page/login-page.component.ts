@@ -7,12 +7,15 @@ import {Router} from "@angular/router";
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
+
+
 export class LoginPageComponent {
   public error: any;
 
   constructor(public afService: AF, private router: Router) {}
 
-  loginWithEmail(event, email, password){
+  // Uses af.ts to attempt to log the user in
+  loginWithEmail(event, email, password) {
     event.preventDefault();
     this.afService.loginWithEmail(email, password).then(() => {
       this.router.navigate(['']);

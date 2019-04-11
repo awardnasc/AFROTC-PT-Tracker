@@ -1,9 +1,11 @@
 <div class="container">
-<p>profile-page works!</p>
-  <p>uid: {{currentUser?.$key}}</p>
-<p>username: {{currentUser?.name}}</p>
-<p>email: {{currentUser?.email}}</p>
-<p>year: {{currentUser?.year}}</p>
-  <p>geoLog: {{geoLogs}}</p>
-  <p>parsedGeo: {{parsedGeo}}</p>
+<h3>Username: {{currentUser?.name}}</h3>
+<h3>Email: {{currentUser?.email}}</h3>
+<h3>Year: {{currentUser?.year}}</h3>
+<h3>Past Workout Logs:</h3>
+  <ul>
+    <li *ngFor="let i of parsedGeo">
+      {{i}}
+    </li>
+  </ul>
 </div>
